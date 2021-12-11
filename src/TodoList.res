@@ -75,6 +75,8 @@ let make = () => {
     todos->Array.map(item => <li key={Int.toString(item.id)}> <TodoItem item onTodoClick /> </li>)
 
   <div>
-    <h2> {React.string("Todo list")} </h2> <ul> {React.array(items)} </ul> <TodoInput onAdd />
+    <h2 className="text-3xl font-bold underline"> {React.string("Todo list")} </h2>
+    <ul> {React.array(items)} </ul>
+    <TodoInput onAdd />
   </div>
 }
