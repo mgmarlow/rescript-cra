@@ -13,6 +13,11 @@
     }
   ],
   "suffix": ".bs.js",
-  "bs-dependencies": ["@rescript/react", "bs-fetch", "@glennsl/bs-json"],
+  "bs-dependencies": [
+    "@rescript/react",
+    "bs-fetch",
+    "@glennsl/bs-json",
+    "@ryyppy/rescript-promise"
+  ],
   "reason": { "react-jsx": 3 }
 }

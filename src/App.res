@@ -4,7 +4,6 @@ let make = () => {
 
   switch url.path {
   | list{"pokemon"} => <PokemonList />
-  | list{"advice"} => <Advice />
   | list{} => <Home />
   | _ => <NotFound />
   }

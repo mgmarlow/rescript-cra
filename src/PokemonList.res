@@ -1,11 +1,5 @@
 open Belt
 
-type swrResponse<'data> = {
-  data: option<'data>,
-  error: option<string>,
-  isValidating: bool,
-}
-
 type pokemonResource = {
   name: string,
   url: string,
@@ -36,18 +30,15 @@ module Decode = {
   }
 }
 
-@module("swr")
-external useSWR: (string, string => Js.Promise.t<'data>) => swrResponse<'data> = "default"
-
 let fetcher = url => {
   Fetch.fetch(url)
-  ->Js.Promise.then_(Fetch.Response.json, _)
-  ->Js.Promise.then_(obj => obj->Decode.pokemonResponse->Js.Promise.resolve, _)
+  ->Promise.then(Fetch.Response.json)
+  ->Promise.then(obj => obj->Decode.pokemonResponse->Promise.resolve)
 }
 
 @react.component
 let make = () => {
-  let {data} = useSWR("https://pokeapi.co/api/v2/pokemon", fetcher)
+  let {data} = Swr.useSWR("https://pokeapi.co/api/v2/pokemon", fetcher)
 
   switch data {
   | Some(data) => {
